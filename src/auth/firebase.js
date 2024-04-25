@@ -15,31 +15,13 @@ const app = initializeApp(firebaseConfig);
 
 export const auth = getAuth(app);
 
-// //Sign up new users 
-// createUserWithEmailAndPassword(auth, email, password)
-// .then(userCredential => {
-//     // Signed in
-//     const user = userCredential.user;
-// })
-// .catch(error => {
-//     console.log(error);
-// });
-
 export const registerWithEmailAndPassword = (email, password)=>{
     return createUserWithEmailAndPassword(auth, email, password)
 }
 
-// export const loginWithEmailAndPassword = (email, password)=>{
-//     //Sign in existing users
-//     signInWithEmailAndPassword(auth, email, password)
-//     .then(userCredential => {
-//         // Signed in
-//         const user = userCredential.user;
-//     })
-//     .catch(error => {
-//         console.log(error);
-//     });
-// }
+export const loginWithEmailAndPassword = (email, password)=>{
+    return signInWithEmailAndPassword(auth, email, password)
+}
 
 // //Set an authentication state observer and get user data
 // onAuthStateChanged(auth, user => {

@@ -1,5 +1,5 @@
 import { createContext, useContext, useState } from "react";
-import { registerWithEmailAndPassword } from "../auth/firebase";
+import { loginWithEmailAndPassword, registerWithEmailAndPassword } from "../auth/firebase";
 
 
 
@@ -11,24 +11,10 @@ export const useUserContext = ()=>{
 
 const UserContextProvider = ({children})=>{
     const [user, setUser] = useState(null);
-    const [error, setError] = useState(null);
-
-    const register = (email, password) => {
-        registerWithEmailAndPassword(email,password)
-        .then(data=>{
-            setUser(data.user)
-            setError(null)
-        })
-        .catch(error=>{
-            setError(error.message)
-        })
-    };
-    
 
     const values = {
         user,
-        error,
-        register
+        setUser
     }
     
     return <UserContext.Provider value={values}>{children}</UserContext.Provider>

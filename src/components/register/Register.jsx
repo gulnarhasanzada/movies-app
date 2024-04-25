@@ -3,6 +3,8 @@ import { Formik, Form, Field, ErrorMessage } from 'formik';
 import { TextField, Button, Box } from '@mui/material';
 import { useUserContext } from '../../context/UserContext';
 import Modal from '@mui/material/Modal';
+import { registerWithEmailAndPassword } from '../../auth/firebase';
+import { useState } from 'react';
 
 const RegisterSchema = Yup.object().shape({
   password: Yup.string()
@@ -13,14 +15,24 @@ const RegisterSchema = Yup.object().shape({
 });
 
 const Register = ({open, closeModal}) => {
-  const{register, error} = useUserContext();
+  const{setUser} = useUserContext();
+  const[error, setError] = useState(null);
+  
   const initialValues={
     email: '',
     password: ''
   }
 
-  const onSubmit = (values)=>{
-    register(values.email, values.password)
+  const onSubmit = async (values)=>{
+    try {
+      const data = await registerWithEmailAndPassword(values.email,values.password);
+      setError(null)
+      setUser(data.user)
+      closeModal()
+    } catch (error) {
+      setUser(null)
+      setError(error.message)
+    }
   }
 
   return (
@@ -40,9 +52,9 @@ const Register = ({open, closeModal}) => {
             variant="outlined"
             fullWidth
             margin="normal"
-            
+            error={errors.email && touched.email}
+            helperText={touched.email && errors.email}
           />
-          <ErrorMessage name="email" />
           <br />
           <Field
             name="password"
@@ -52,9 +64,9 @@ const Register = ({open, closeModal}) => {
             variant="outlined"
             fullWidth
             margin="normal"
+            error={errors.password && touched.password}
+            helperText={touched.password && errors.password}
           />
-          <ErrorMessage name="password" />
-          <br />
           <br />
           <Button type="submit" variant="contained" color="primary">Register</Button>
         </Form>
