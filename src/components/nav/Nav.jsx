@@ -6,8 +6,20 @@ import Typography from '@mui/material/Typography';
 import Button from '@mui/material/Button';
 import { Link } from 'react-router-dom';
 import AnimationIcon from '@mui/icons-material/Animation';
+import { useState } from 'react';
+import Login from '../../pages/login/Login';
 
 const Nav = () => {
+  const [showLogin, setShowLogin] = useState(false);
+
+  const hideLogin = ()=>{
+    setShowLogin(false)
+  }
+
+  const openLogin = ()=>{
+    setShowLogin(true)
+  }
+
   return (
     <Box>
     <AppBar position="static" sx={{display:'flex', flexDirection:'row', justifyContent:'space-between' }}>
@@ -31,11 +43,11 @@ const Nav = () => {
           </Typography>
       </Toolbar>
       <Toolbar>
+        <Button variant='contained' onClick={openLogin}>Login</Button>
         <Link to="/">Home</Link>
-        <Link to="/login">Login</Link>
-        <Button color="inherit">Login</Button>
       </Toolbar>
     </AppBar>
+    {showLogin && <Login open={showLogin} closeModal={hideLogin}/>}
   </Box>
   )
 }

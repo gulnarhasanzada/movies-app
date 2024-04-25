@@ -6,7 +6,7 @@ import { Outlet } from 'react-router-dom';
 
 
 function App() {
-
+  
   return (
       <Box display="flex" sx={{flexDirection: 'column'}}>
         <Nav/>
