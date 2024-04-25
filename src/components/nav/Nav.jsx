@@ -7,18 +7,12 @@ import Button from '@mui/material/Button';
 import { Link } from 'react-router-dom';
 import AnimationIcon from '@mui/icons-material/Animation';
 import { useState } from 'react';
-import Login from '../../pages/login/Login';
+import Login from '../login/Login';
+import Register from '../register/Register';
 
 const Nav = () => {
   const [showLogin, setShowLogin] = useState(false);
-
-  const hideLogin = ()=>{
-    setShowLogin(false)
-  }
-
-  const openLogin = ()=>{
-    setShowLogin(true)
-  }
+  const [showRegister, setShowRegister] = useState(false);
 
   return (
     <Box>
@@ -42,12 +36,14 @@ const Nav = () => {
             GMovies
           </Typography>
       </Toolbar>
-      <Toolbar>
-        <Button variant='contained' onClick={openLogin}>Login</Button>
+      <Toolbar>   
         <Link to="/">Home</Link>
+        <Button variant='contained' onClick={()=>setShowLogin(true)}>Login</Button>
+        <Button variant='contained' onClick={()=>setShowRegister(true)}>Register</Button>
       </Toolbar>
     </AppBar>
-    {showLogin && <Login open={showLogin} closeModal={hideLogin}/>}
+    {showLogin && <Login open={showLogin} closeModal={()=>setShowLogin(false)}/>}
+    {showRegister && <Register open={showRegister} closeModal={()=>setShowRegister(false)}/>}
   </Box>
   )
 }

@@ -13,54 +13,60 @@ const firebaseConfig = {
 
 const app = initializeApp(firebaseConfig);
 
-const auth = getAuth(app);
+export const auth = getAuth(app);
 
-//Sign up new users 
-createUserWithEmailAndPassword(auth, email, password)
-.then(userCredential => {
-    // Signed in
-    const user = userCredential.user;
-})
-.catch(error => {
-    console.log(error);
-});
+// //Sign up new users 
+// createUserWithEmailAndPassword(auth, email, password)
+// .then(userCredential => {
+//     // Signed in
+//     const user = userCredential.user;
+// })
+// .catch(error => {
+//     console.log(error);
+// });
 
-//Sign in existing users
-signInWithEmailAndPassword(auth, email, password)
-.then(userCredential => {
-    // Signed in
-    const user = userCredential.user;
-})
-.catch(error => {
-    console.log(error);
-});
-
-//Set an authentication state observer and get user data
-onAuthStateChanged(auth, user => {
-if (user) {
-    // User is signed in, see docs for a list of available properties
-    // https://firebase.google.com/docs/reference/js/firebase.User
-} else {
-    // User is signed out
+export const registerWithEmailAndPassword = (email, password)=>{
+    return createUserWithEmailAndPassword(auth, email, password)
 }
-});
 
-//Authenticate Using Google with Popup
-signInWithPopup(auth, provider)
-.then(result => {
-    // The signed-in user info.
-    const user = result.user;
-})
-.catch(error => {
-    // Handle Errors here.
-    console.log(error);
-});
+// export const loginWithEmailAndPassword = (email, password)=>{
+//     //Sign in existing users
+//     signInWithEmailAndPassword(auth, email, password)
+//     .then(userCredential => {
+//         // Signed in
+//         const user = userCredential.user;
+//     })
+//     .catch(error => {
+//         console.log(error);
+//     });
+// }
 
-//Sign Out
-signOut(auth)
-.then(() => {
-    // Sign-out successful.
-})
-.catch(error => {
-    // An error happened.
-});
+// //Set an authentication state observer and get user data
+// onAuthStateChanged(auth, user => {
+// if (user) {
+//     // User is signed in, see docs for a list of available properties
+//     // https://firebase.google.com/docs/reference/js/firebase.User
+// } else {
+//     // User is signed out
+// }
+// });
+
+// //Authenticate Using Google with Popup
+// signInWithPopup(auth, provider)
+// .then(result => {
+//     // The signed-in user info.
+//     const user = result.user;
+// })
+// .catch(error => {
+//     // Handle Errors here.
+//     console.log(error);
+// });
+
+// //Sign Out
+// signOut(auth)
+// .then(() => {
+//     // Sign-out successful.
+// })
+// .catch(error => {
+//     // An error happened.
+// });
