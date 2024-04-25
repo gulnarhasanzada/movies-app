@@ -9,10 +9,12 @@ import AnimationIcon from '@mui/icons-material/Animation';
 import { useState } from 'react';
 import Login from '../login/Login';
 import Register from '../register/Register';
+import { useUserContext } from '../../context/UserContext';
 
 const Nav = () => {
   const [showLogin, setShowLogin] = useState(false);
   const [showRegister, setShowRegister] = useState(false);
+  const {user, setUser} = useUserContext();
 
   return (
     <Box>
@@ -38,8 +40,9 @@ const Nav = () => {
       </Toolbar>
       <Toolbar>   
         <Link to="/">Home</Link>
-        <Button variant='contained' onClick={()=>setShowLogin(true)}>Login</Button>
-        <Button variant='contained' onClick={()=>setShowRegister(true)}>Register</Button>
+        {!user && <Button variant='contained' onClick={()=>setShowLogin(true)}>Login</Button>}
+        {!user && <Button variant='contained' onClick={()=>setShowRegister(true)}>Register</Button>}
+        {user && <Button variant='contained' onClick={()=>setUser(null)}>Logout</Button>}
       </Toolbar>
     </AppBar>
     {showLogin && <Login open={showLogin} closeModal={()=>setShowLogin(false)}/>}

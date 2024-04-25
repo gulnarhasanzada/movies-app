@@ -5,6 +5,7 @@ import { useUserContext } from '../../context/UserContext';
 import Modal from '@mui/material/Modal';
 import { registerWithEmailAndPassword } from '../../auth/firebase';
 import { useState } from 'react';
+import {toast} from 'react-toastify'
 
 const RegisterSchema = Yup.object().shape({
   password: Yup.string()
@@ -17,7 +18,7 @@ const RegisterSchema = Yup.object().shape({
 const Register = ({open, closeModal}) => {
   const{setUser} = useUserContext();
   const[error, setError] = useState(null);
-  
+
   const initialValues={
     email: '',
     password: ''
@@ -28,6 +29,7 @@ const Register = ({open, closeModal}) => {
       const data = await registerWithEmailAndPassword(values.email,values.password);
       setError(null)
       setUser(data.user)
+      toast.success("Successfully registered!")
       closeModal()
     } catch (error) {
       setUser(null)

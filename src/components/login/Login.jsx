@@ -4,8 +4,8 @@ import { Formik, Form, Field } from 'formik';
 import { TextField, Button, Box } from '@mui/material';
 import Modal from '@mui/material/Modal';
 import { useUserContext } from '../../context/UserContext';
-import {useNavigate} from 'react-router-dom'
 import { loginWithEmailAndPassword } from '../../auth/firebase';
+import {toast} from 'react-toastify'
 
 
  const LoginSchema = Yup.object().shape({
@@ -29,6 +29,7 @@ const Login = ({open, closeModal})=>{
       const data = await loginWithEmailAndPassword(values.email,values.password);
       setError(null)
       setUser(data.user)
+      toast.success("Successfully logged in!")
       closeModal()
     } catch (error) {
       setUser(null)
