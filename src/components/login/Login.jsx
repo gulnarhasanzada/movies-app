@@ -4,7 +4,7 @@ import { Formik, Form, Field } from 'formik';
 import { TextField, Button, Box } from '@mui/material';
 import Modal from '@mui/material/Modal';
 import { useUserContext } from '../../context/UserContext';
-import { loginWithEmailAndPassword } from '../../auth/firebase';
+import { authWithGoogle, loginWithEmailAndPassword } from '../../auth/firebase';
 import {toast} from 'react-toastify'
 
 
@@ -37,12 +37,24 @@ const Login = ({open, closeModal})=>{
     }
   } 
 
+  const onGoogleAuth = async ()=>{
+    try {
+      const data = await authWithGoogle();
+      setError(null)
+      setUser(data.user)
+      toast.success("Successfully logged in!")
+      closeModal()
+    } catch (error) {
+      setUser(null)
+      setError(error.message)
+    }
+  }
+
   return (
     <Modal open={open} onClose={closeModal} aria-labelledby="modal-modal-title" aria-describedby="modal-modal-description" >
     <Box sx={{ position: 'absolute', top: '50%', left: '50%', transform: 'translate(-50%, -50%)',width: 600,bgcolor: 'background.paper', boxShadow: 24,p: 4,}}>
       <h2 id="modal-modal-title">Login</h2>
       <Formik initialValues={{
-        fullName: '',
         password: '',
         email: '',
       }}
@@ -53,16 +65,6 @@ const Login = ({open, closeModal})=>{
      {({ errors, touched }) => (
       <Form method='post'>
         {error && <p>{error}</p>}
-      <Field
-        name="fullName"
-        as={TextField}
-        label="Full Name"
-        variant="outlined"
-        fullWidth
-        margin="normal"
-        error={errors.fullName && touched.fullName}
-        helperText={touched.fullName && errors.fullName}
-      />
       <Field
         name="email"
         as={TextField}
@@ -86,9 +88,8 @@ const Login = ({open, closeModal})=>{
         error={errors.password && touched.password}
         helperText={touched.password && errors.password}
       />
-      <Button type="submit" variant="contained" color="primary">
-        Submit
-      </Button>
+      <Button type="submit" variant="contained" color="primary" fullWidth>Login</Button>
+      <Button onClick={onGoogleAuth} variant="contained" color="primary" fullWidth>Login with Google</Button>
       </Form>
     )}
 

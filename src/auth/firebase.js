@@ -1,5 +1,5 @@
 import { initializeApp } from "firebase/app";
-import { getAuth, createUserWithEmailAndPassword, signInWithEmailAndPassword, onAuthStateChanged, GoogleAuthProvider, signOut} from 'firebase/auth';
+import { getAuth, signInWithPopup, createUserWithEmailAndPassword, signInWithEmailAndPassword, onAuthStateChanged, GoogleAuthProvider, signOut} from 'firebase/auth';
 const provider = new GoogleAuthProvider();
 
 const firebaseConfig = {
@@ -23,6 +23,10 @@ export const loginWithEmailAndPassword = (email, password)=>{
     return signInWithEmailAndPassword(auth, email, password)
 }
 
+export const authWithGoogle = ()=>{
+    return signInWithPopup(auth, provider);
+}
+
 // //Set an authentication state observer and get user data
 // onAuthStateChanged(auth, user => {
 // if (user) {
@@ -31,17 +35,6 @@ export const loginWithEmailAndPassword = (email, password)=>{
 // } else {
 //     // User is signed out
 // }
-// });
-
-// //Authenticate Using Google with Popup
-// signInWithPopup(auth, provider)
-// .then(result => {
-//     // The signed-in user info.
-//     const user = result.user;
-// })
-// .catch(error => {
-//     // Handle Errors here.
-//     console.log(error);
 // });
 
 // //Sign Out

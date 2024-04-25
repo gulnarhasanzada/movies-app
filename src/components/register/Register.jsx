@@ -3,7 +3,7 @@ import { Formik, Form, Field, ErrorMessage } from 'formik';
 import { TextField, Button, Box } from '@mui/material';
 import { useUserContext } from '../../context/UserContext';
 import Modal from '@mui/material/Modal';
-import { registerWithEmailAndPassword } from '../../auth/firebase';
+import { authWithGoogle, registerWithEmailAndPassword } from '../../auth/firebase';
 import { useState } from 'react';
 import {toast} from 'react-toastify'
 
@@ -27,6 +27,19 @@ const Register = ({open, closeModal}) => {
   const onSubmit = async (values)=>{
     try {
       const data = await registerWithEmailAndPassword(values.email,values.password);
+      setError(null)
+      setUser(data.user)
+      toast.success("Successfully registered!")
+      closeModal()
+    } catch (error) {
+      setUser(null)
+      setError(error.message)
+    }
+  }
+
+  const onGoogleAuth = async ()=>{
+    try {
+      const data = await authWithGoogle();
       setError(null)
       setUser(data.user)
       toast.success("Successfully registered!")
@@ -70,7 +83,8 @@ const Register = ({open, closeModal}) => {
             helperText={touched.password && errors.password}
           />
           <br />
-          <Button type="submit" variant="contained" color="primary">Register</Button>
+          <Button type="submit" variant="contained" color="primary" fullWidth>Register</Button>
+          <Button onClick={onGoogleAuth} variant="contained" color="primary" fullWidth>Continue With Google</Button>
         </Form>
       )}
     </Formik>
