@@ -9,13 +9,13 @@
 
 .details-container{
     background-color: #000;
-    opacity: 0.8;
     padding: 1.5rem;
     margin-top: 2rem;
     color: #fff;
     display: flex !important;
     flex-direction: row;
     justify-content:left;
+    background-color: rgba(000, 000, 000, 0.8);
 }
 
 .details-poster{
@@ -28,9 +28,11 @@
 
 .poster{
     position: relative;
-    width: 100%;
+    max-height: 70vh;
 }
 
 .MuiRating-iconEmpty{
    color: #FAAF00 !important; 
 }
+
+

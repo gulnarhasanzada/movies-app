@@ -34,7 +34,7 @@ const Nav = () => {
     <Box>
     <AppBar position="static" sx={{display:'flex', flexDirection:'row', justifyContent:'space-between', backgroundColor: theme.palette.primary.main }}>
     <Toolbar>
-    <AnimationIcon sx={{ display: { xs: 'none', md: 'flex' }, mr: 1 }} />
+    <AnimationIcon sx={{ display: { xs: 'none', md: 'flex' }, mr: 1, color: theme.palette.secondary.main }} />
           <Typography
             variant="h6"
             noWrap
@@ -45,7 +45,7 @@ const Nav = () => {
               display: { xs: 'none', md: 'flex' },
               fontWeight: 700,
               letterSpacing: '.3rem',
-              color: 'inherit',
+              color: theme.palette.secondary.main,
               textDecoration: 'none',
             }}
           >
