@@ -10,15 +10,29 @@ import { useState } from 'react';
 import Login from '../login/Login';
 import Register from '../register/Register';
 import { useUserContext } from '../../context/UserContext';
+import { logOut } from '../../auth/firebase';
+import { toast } from 'react-toastify';
+import { useTheme } from '@mui/material';
 
 const Nav = () => {
   const [showLogin, setShowLogin] = useState(false);
   const [showRegister, setShowRegister] = useState(false);
   const {user, setUser} = useUserContext();
-
+  const theme = useTheme()
+ 
+  const signOut = ()=>{
+    logOut()
+    .then(() => {
+        setUser(null)
+        toast.success('Successfully, signed out!')
+    })
+    .catch(error => {
+        toast.warning(error)
+    });
+}
   return (
     <Box>
-    <AppBar position="static" sx={{display:'flex', flexDirection:'row', justifyContent:'space-between' }}>
+    <AppBar position="static" sx={{display:'flex', flexDirection:'row', justifyContent:'space-between', backgroundColor: theme.palette.primary.main }}>
     <Toolbar>
     <AnimationIcon sx={{ display: { xs: 'none', md: 'flex' }, mr: 1 }} />
           <Typography
@@ -42,7 +56,7 @@ const Nav = () => {
         <Link to="/">Home</Link>
         {!user && <Button variant='contained' onClick={()=>setShowLogin(true)}>Login</Button>}
         {!user && <Button variant='contained' onClick={()=>setShowRegister(true)}>Register</Button>}
-        {user && <Button variant='contained' onClick={()=>setUser(null)}>Logout</Button>}
+        {user && <Button variant='contained' onClick={signOut}>Logout</Button>}
       </Toolbar>
     </AppBar>
     {showLogin && <Login open={showLogin} closeModal={()=>setShowLogin(false)}/>}

@@ -27,6 +27,10 @@ export const authWithGoogle = ()=>{
     return signInWithPopup(auth, provider);
 }
 
+export const logOut = ()=>{
+    return signOut(auth)
+}
+
 // //Set an authentication state observer and get user data
 // onAuthStateChanged(auth, user => {
 // if (user) {
