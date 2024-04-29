@@ -1,5 +1,5 @@
 import './App.css'
-import {Box, Container, ThemeProvider} from '@mui/material';
+import {Box, ThemeProvider} from '@mui/material';
 import Nav from './components/nav/Nav';
 import AppRouter from './router/AppRouter';
 import { Outlet } from 'react-router-dom';
