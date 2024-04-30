@@ -18,7 +18,7 @@ export default function Search() {
   return (
     <Paper
       component="form"
-      sx={{ p: '10px 20px', width: '100%', display: 'flex', alignItems: 'center', borderRadius: 0, backgroundColor:"rgba(000, 000, 000, 0.5)"}}
+      sx={{ p: '10px 20px', width: '100%', display: 'flex', alignItems: 'center', borderRadius: 0, backgroundColor:"rgba(000, 000, 000, 0.8)"}}
     >
       <InputBase
         sx={{ ml: 1, flex: 1, width: '100%',color: 'white' }}

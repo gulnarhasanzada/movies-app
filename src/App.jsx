@@ -8,6 +8,7 @@ import { ToastContainer} from "react-toastify";
 import theme from './Theme';
 import Search from './components/search/Search';
 import { useMoviesContext } from './context/MoviesContext';
+import Footer from './components/footer/Footer';
 
 
 function App() {
@@ -21,6 +22,7 @@ function App() {
         <ToastContainer />
         <AppRouter />
         <Outlet/>
+        <Footer/>
       </Box>
       </ThemeProvider>
   )
