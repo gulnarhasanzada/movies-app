@@ -34,7 +34,7 @@ const Nav = () => {
     <Box>
     <AppBar position="static" sx={{display:'flex', flexDirection:'row', justifyContent:'space-between', backgroundColor: theme.palette.primary.main }}>
     <Toolbar>
-    <AnimationIcon sx={{ display: { xs: 'none', md: 'flex' }, mr: 1, color: theme.palette.secondary.main }} />
+    <AnimationIcon sx={{ display: { md: 'flex' }, fontSize:{xs: '1rem', sm:'1.5rem'}, mr: 1, color: theme.palette.secondary.main }} />
           <Typography
             variant="h6"
             noWrap
@@ -42,11 +42,12 @@ const Nav = () => {
             href="/"
             sx={{
               mr: 2,
-              display: { xs: 'none', md: 'flex' },
+              display: { md: 'flex' },
               fontWeight: 700,
               letterSpacing: '.3rem',
               color: theme.palette.secondary.main,
               textDecoration: 'none',
+              fontSize:{xs: '1rem', sm:'1.5rem'}
             }}
           >
             GMovies

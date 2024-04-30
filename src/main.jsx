@@ -10,7 +10,7 @@ ReactDOM.createRoot(document.getElementById('root')).render(
   <BrowserRouter>
     <UserContextProvider>
       <MoviesContextProvider>
-          <App /> 
+          <App/> 
       </MoviesContextProvider>
     </UserContextProvider>
   </BrowserRouter>,

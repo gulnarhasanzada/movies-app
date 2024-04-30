@@ -7,6 +7,7 @@ const MoviesContext = createContext();
 const  MoviesContextProvider = ({children}) =>{
     const [movies, setMovies] = useState([]);
     const [movieDetails, setMovieDetails] = useState({});
+    const [search, setSearch] = useState("")
     const apiKey = import.meta.env.VITE_MOVIES_API_KEY;
     const url = 'https://api.themoviedb.org/3';
 
@@ -15,7 +16,12 @@ const  MoviesContextProvider = ({children}) =>{
 
 
     const fetchMovies = async ()=>{
-        const res = await axios.get(`${url}/discover/movie?api_key=${apiKey}`);
+        let fetchUrl = `${url}/discover/movie?api_key=${apiKey}`;
+        console.log(search)
+        if(search !==''){
+          fetchUrl =  `${url}/search/movie?api_key=${apiKey}&query=${search}`
+        }
+        const res = await axios.get(fetchUrl);
         setMovies(res.data.results)
     }
 
@@ -36,7 +42,7 @@ const  MoviesContextProvider = ({children}) =>{
 
     useEffect(()=>{
         fetchMovies();  
-    },[])
+    },[search])
 
     useEffect(()=>{
         if(movieId){
@@ -47,7 +53,8 @@ const  MoviesContextProvider = ({children}) =>{
     const values = {
         movies,
         movieDetails,
-        fetchMovieById
+        fetchMovieById,
+        setSearch
     }
 
     return <MoviesContext.Provider value={values}>{children}</MoviesContext.Provider>

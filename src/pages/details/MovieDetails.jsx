@@ -13,8 +13,7 @@ const MovieDetails = () => {
   const poster = `${import.meta.env.VITE_MOVIES_IMAGE_URL}/${movieDetails.poster_path}`
 
   return (
-      <Box className="details-box" 
-         sx={{backgroundImage: `linear-gradient(90deg, rgba(0,0,0,0.95) 30%,  rgba(0,0,0,0.3) 80%, rgba(0,0,0,0.98) 100%), url("${backdrop}")`}}>
+      <Box className="details-box">
       <Container maxWidth="lg" className="details-container">
         <div className='details-poster'>
          <img src={poster} className='poster'/>
