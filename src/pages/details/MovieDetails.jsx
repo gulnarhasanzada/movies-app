@@ -33,7 +33,7 @@ const MovieDetails = () => {
             </div>
 
             <Typography variant="h6" sx={{mt: 3, fontSize:'1rem'}}>Rate: ({movieDetails && movieDetails.vote_average && movieDetails.vote_average.toFixed(1)})</Typography>
-            <Rating name="read-only" value={movieDetails && movieDetails.vote_average &&(movieDetails.vote_average/2).toFixed(1)} readOnly/>
+            <Rating name="read-only" value={movieDetails && movieDetails.vote_average ? (movieDetails.vote_average/2).toFixed(1): 0} readOnly/>
 
             <Typography variant="h6" sx={{mt: 3, fontSize:'1rem'}}>Overview</Typography>
             <Typography variant="body1" sx={{mt: 1}}>
