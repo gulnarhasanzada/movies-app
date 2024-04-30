@@ -7,11 +7,11 @@ import UserContextProvider from './context/UserContext.jsx'
 import MoviesContextProvider from './context/MoviesContext.jsx'
 
 ReactDOM.createRoot(document.getElementById('root')).render(
+  <BrowserRouter>
     <UserContextProvider>
       <MoviesContextProvider>
-        <BrowserRouter>
-          <App />
-        </BrowserRouter>
+          <App /> 
       </MoviesContextProvider>
-    </UserContextProvider>,
+    </UserContextProvider>
+  </BrowserRouter>,
 )

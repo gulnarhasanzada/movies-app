@@ -7,7 +7,7 @@ const Movies = () => {
   const{movies} = useMoviesContext();
 
   return (
-    <Box display="flex" flexDirection='row' justifyContent='center' flexWrap='wrap'>
+    <Box sx={{display: 'flex', flexDirection:'row', flexWrap:'wrap', justifyContent:'center'}}>
       {movies.map(movie=>{
         return <MovieCard key={movie.id} movie={movie}/>
       })}
