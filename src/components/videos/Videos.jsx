@@ -21,6 +21,7 @@ export default function Videos({videos}) {
       >
         {videos && videos.map((video, index)=>(
             <Tab value={index} label={video.name} key={index} sx={{
+                fontSize: {xs:'0.5rem', sm:'0.8rem'},
                 color: value === index ? 'secondary.main' : 'primary.light', 
               }}/>
         ))}
@@ -30,7 +31,7 @@ export default function Videos({videos}) {
         if(value === index){
             return <iframe
                         className="youtube"
-                        src={`https://www.youtube.com/embed/${video.key}`}
+                        src={`https://www.youtube.com/embed/${video.key}?autoplay=1&mute=1`}
                         title="YouTube video player"
                         frameBorder="0"
                         allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"

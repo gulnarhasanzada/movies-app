@@ -21,7 +21,7 @@ const MovieDetails = () => {
         </div>
         <div className='details-info'>
           <Box>
-            <Typography variant="h1" sx={{fontSize:'2.5rem'}}>{movieDetails.title}</Typography>
+            <Typography variant="h1" sx={{my:2,fontSize:{xs:'1.5rem', md:'2.5rem'}}}>{movieDetails.title}</Typography>
             <div>
               <Typography variant="caption" sx={{fontSize:'0.7rem', color: theme.palette.secondary.light}}>{movieDetails.origin_country} * </Typography> 
               <Typography variant="caption" sx={{fontSize:'0.7rem', color: theme.palette.secondary.light}}>{movieDetails &&movieDetails.release_date} * </Typography> 

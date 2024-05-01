@@ -34,7 +34,7 @@ const Nav = () => {
     <Box>
     <AppBar position="static" sx={{display:'flex', flexDirection:'row', justifyContent:'space-between', backgroundColor: theme.palette.primary.main }}>
     <Toolbar>
-    <AnimationIcon sx={{ display: { md: 'flex' }, fontSize:{xs: '1rem', sm:'1.5rem'}, mr: 1, color: theme.palette.secondary.main }} />
+    <AnimationIcon sx={{ display: { md: 'flex' }, fontSize:{xs: '0.8rem', sm:'1.5rem'}, mr: 1, color: theme.palette.secondary.main }} />
           <Typography
             variant="h6"
             noWrap
@@ -47,17 +47,17 @@ const Nav = () => {
               letterSpacing: '.3rem',
               color: theme.palette.secondary.main,
               textDecoration: 'none',
-              fontSize:{xs: '1rem', sm:'1.5rem'}
+              fontSize:{xs: '0.8rem', sm:'1.5rem'}
             }}
           >
             GMovies
           </Typography>
       </Toolbar>
       <Toolbar>   
-        <Link to="/">Home</Link>
-        {!user && <Button variant='contained' onClick={()=>setShowLogin(true)}>Login</Button>}
-        {!user && <Button variant='contained' onClick={()=>setShowRegister(true)}>Register</Button>}
-        {user && <Button variant='contained' onClick={signOut}>Logout</Button>}
+        <Link to="/" sx={{fontSize:{xs: '0.6rem', sm: '1rem'}}} variant= 'links.noUnderline'>Home</Link>
+        {!user && <Button variant='contained' onClick={()=>setShowLogin(true)} sx={{fontSize:{xs: '0.6rem', sm: '1rem'},px:{xs:'0.5rem'}}}>Login</Button>}
+        {!user && <Button variant='contained' onClick={()=>setShowRegister(true)} sx={{fontSize:{xs: '0.6rem', sm: '1rem'},px:{xs:'0.5rem'}}}>Signup</Button>}
+        {user && <Button variant='contained' onClick={signOut} sx={{fontSize:{xs: '0.8rem', sm: '1rem'}}}>Logout</Button>}
       </Toolbar>
     </AppBar>
     {showLogin && <Login open={showLogin} closeModal={()=>setShowLogin(false)}/>}

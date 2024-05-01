@@ -13,12 +13,14 @@ function App() {
   
   return (
     <ThemeProvider theme={theme}>
-      <Box display="flex" sx={{flexDirection: 'column'}}>
+      <Box display="flex" sx={{flexDirection: 'column', minHeight:'100vh'}}>
+        <ToastContainer />
         <Nav/>
         <Search/>
-        <ToastContainer />
-        <AppRouter />
-        <Outlet/>
+        <Box sx={{flex: 1}}>
+          <AppRouter />
+          <Outlet/>
+        </Box>
         <Footer/>
       </Box>
       </ThemeProvider>

@@ -4,7 +4,6 @@
     background-position: center;
     position: relative;
     width: 100%;
-    height: 100vh;
 }
 
 .details-container{
@@ -23,13 +22,13 @@
 }
 
 .details-info{
-   padding: 1.5em;
+   padding:0 1.5rem;
    width: 55%;
 }
 
 .poster{
     position: relative;
-    max-height: 75vh;
+    max-height: 80vh;
     width: 100%;
 }
 

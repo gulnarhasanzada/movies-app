@@ -36,7 +36,7 @@ const  MoviesContextProvider = ({children}) =>{
                 'Authorization': import.meta.env.VITE_MOVIES_TOKEN
             }
         });
-        const videos = videoData.data.results.filter(video=>video.type === 'Trailer')
+        const videos = videoData.data.results.filter(video=>video.type === 'Trailer').slice(0,2)
         setMovieDetails({...res.data, videos})
     }
 

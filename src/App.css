@@ -1,12 +1,4 @@
 body{
     background-color: #000;
-}
-
-.app{
-    background-size: cover;
-    background-repeat: no-repeat;
-    background-position: center;
-    position: relative;
-    width: 100%;
-    height: 100vh;
+    min-height: 100vh;
 }
