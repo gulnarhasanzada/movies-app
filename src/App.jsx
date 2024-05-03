@@ -17,7 +17,7 @@ function App() {
         <ToastContainer />
         <Nav/>
         <Search/>
-        <Box sx={{flex: 1}}>
+        <Box sx={{flex: 1}} className="main">
           <AppRouter />
           <Outlet/>
         </Box>

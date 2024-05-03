@@ -1,13 +1,12 @@
 import * as Yup from 'yup';
-import { Formik, Form, Field, ErrorMessage } from 'formik';
+import { Formik, Form, Field} from 'formik';
 import { TextField, Button, Box } from '@mui/material';
 import { useUserContext } from '../../context/UserContext';
-import Modal from '@mui/material/Modal';
-import { authWithGoogle, registerWithEmailAndPassword } from '../../auth/firebase';
 import { useState } from 'react';
-import {toast} from 'react-toastify'
 
 const RegisterSchema = Yup.object().shape({
+  displayName: Yup.string()
+    .min(2, 'Too Short!'),
   password: Yup.string()
     .min(5, 'Too Short!')
     .max(50, 'Too Long!')
@@ -15,43 +14,26 @@ const RegisterSchema = Yup.object().shape({
   email: Yup.string().email('Invalid email').required('Email is required'),
 });
 
-const Register = ({open, closeModal}) => {
-  const{setUser} = useUserContext();
+const Register = () => {
+  const{createUser, signUpProvider} = useUserContext();
   const[error, setError] = useState(null);
 
   const initialValues={
     email: '',
-    password: ''
+    password: '',
+    displayName: ''
   }
 
   const onSubmit = async (values)=>{
     try {
-      const data = await registerWithEmailAndPassword(values.email,values.password);
+      await createUser(values.email,values.password, values.displayName);
       setError(null)
-      setUser(data.user)
-      toast.success("Successfully registered!")
-      closeModal()
     } catch (error) {
-      setUser(null)
-      setError(error.message)
-    }
-  }
-
-  const onGoogleAuth = async ()=>{
-    try {
-      const data = await authWithGoogle();
-      setError(null)
-      setUser(data.user)
-      toast.success("Successfully registered!")
-      closeModal()
-    } catch (error) {
-      setUser(null)
       setError(error.message)
     }
   }
 
   return (
-    <Modal open={open} onClose={closeModal} aria-labelledby="modal-modal-title" aria-describedby="modal-modal-description" >
       <Box sx={{ position: 'absolute', top: '50%', left: '50%', transform: 'translate(-50%, -50%)',width: {xs: '90vw', md:600},bgcolor: 'background.paper', boxShadow: 24,p: 4,}}>
       <h2 id="modal-modal-title">Register</h2>
       
@@ -59,6 +41,18 @@ const Register = ({open, closeModal}) => {
       {({ errors, touched }) => (
         <Form>
           {error && <p>{error}</p>}
+          <Field
+            name="displayName"
+            as={TextField}
+            type="text"
+            label="Name"
+            variant="outlined"
+            fullWidth
+            margin="normal"
+            error={errors.displayName && touched.displayName}
+            helperText={touched.displayName && errors.displayName}
+          />
+          <br />
           <Field
             name="email"
             as={TextField}
@@ -84,12 +78,11 @@ const Register = ({open, closeModal}) => {
           />
           <br />
           <Button type="submit" variant="contained" color="primary" fullWidth>Register</Button>
-          <Button onClick={onGoogleAuth} variant="contained" color="primary" fullWidth>Continue With Google</Button>
+          <Button onClick={signUpProvider} variant="contained" color="secondary" fullWidth sx={{mt:2}}>Continue With Google</Button>
         </Form>
       )}
     </Formik>
     </Box>
-   </Modal>
   )
 }
 

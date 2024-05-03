@@ -24,7 +24,8 @@ const Login = ({open, closeModal})=>{
   const{setUser} = useUserContext();
   const[error, setError] = useState(null)
 
-  const onSubmit = async (values)=>{
+  const submitHandler = async (values)=>{
+    console.log("j0")
     try {
       const data = await loginWithEmailAndPassword(values.email,values.password);
       setError(null)
@@ -51,51 +52,51 @@ const Login = ({open, closeModal})=>{
   }
 
   return (
-    <Modal open={open} onClose={closeModal} aria-labelledby="modal-modal-title" aria-describedby="modal-modal-description" >
+  
     <Box sx={{ position: 'absolute', top: '50%', left: '50%', transform: 'translate(-50%, -50%)',width: 600,bgcolor: 'background.paper', boxShadow: 24,p: 4,}}>
       <h2 id="modal-modal-title">Login</h2>
-      <Formik initialValues={{
-        password: '',
-        email: '',
-      }}
-      validationSchema={LoginSchema}
- 
-      onSubmit={onSubmit}>
+      <Formik 
+        initialValues={{
+          password: '',
+          email: '',
+        }}
+        validationSchema={LoginSchema}
+        onSubmit={submitHandler}>
       
-     {({ errors, touched }) => (
-      <Form method='post'>
-        {error && <p>{error}</p>}
-      <Field
-        name="email"
-        as={TextField}
-        type="email"
-        label="Email"
-        variant="outlined"
-        fullWidth
-        margin="normal"
-        error={errors.email && touched.email}
-        helperText={touched.email && errors.email}
-      />
+        {({ errors, touched }) => (
+          <Form method='post'>
+            {error && <p>{error}</p>}
+          <Field
+            name="email"
+            as={TextField}
+            type="email"
+            label="Email"
+            variant="outlined"
+            fullWidth
+            margin="normal"
+            error={errors.email && touched.email}
+            helperText={touched.email && errors.email}
+          />
 
-      <Field
-        name="password"
-        as={TextField}
-        type="password"
-        label="Password"
-        variant="outlined"
-        fullWidth
-        margin="normal"
-        error={errors.password && touched.password}
-        helperText={touched.password && errors.password}
-      />
-      <Button type="submit" variant="contained" color="primary" fullWidth>Login</Button>
-      <Button onClick={onGoogleAuth} variant="contained" color="primary" fullWidth>Login with Google</Button>
-      </Form>
-    )}
+          <Field
+            name="password"
+            as={TextField}
+            type="password"
+            label="Password"
+            variant="outlined"
+            fullWidth
+            margin="normal"
+            error={errors.password && touched.password}
+            helperText={touched.password && errors.password}
+          />
+          <Button type="submit" variant="contained" color="primary" fullWidth>Login</Button>
+          <Button onClick={onGoogleAuth} variant="outlined" color="primary" fullWidth>Login with Google</Button>
+          </Form>
+        )}
 
     </Formik>
     </Box>
-   </Modal>
+   
   );
 }
 

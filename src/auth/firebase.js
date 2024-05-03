@@ -15,37 +15,3 @@ const app = initializeApp(firebaseConfig);
 
 export const auth = getAuth(app);
 
-export const registerWithEmailAndPassword = (email, password)=>{
-    return createUserWithEmailAndPassword(auth, email, password)
-}
-
-export const loginWithEmailAndPassword = (email, password)=>{
-    return signInWithEmailAndPassword(auth, email, password)
-}
-
-export const authWithGoogle = ()=>{
-    return signInWithPopup(auth, provider);
-}
-
-export const logOut = ()=>{
-    return signOut(auth)
-}
-
-// //Set an authentication state observer and get user data
-// onAuthStateChanged(auth, user => {
-// if (user) {
-//     // User is signed in, see docs for a list of available properties
-//     // https://firebase.google.com/docs/reference/js/firebase.User
-// } else {
-//     // User is signed out
-// }
-// });
-
-// //Sign Out
-// signOut(auth)
-// .then(() => {
-//     // Sign-out successful.
-// })
-// .catch(error => {
-//     // An error happened.
-// });

@@ -7,3 +7,20 @@
 body{
     font-family: "Montserrat", sans-serif;
   }
+
+.nav-link{
+    text-decoration: none;
+    margin-left: 0.6rem;
+}
+.main{
+    background-size: cover;
+    background-repeat: no-repeat;
+    background-position: center;
+    background-image: linear-gradient(90deg, rgba(0,0,0,0.95) 30%,  rgba(0,0,0,0.3) 80%, rgba(0,0,0,0.40) 100%);
+}
+
+@media (max-width: 490px){
+    .nav-link{
+        font-size: 0.8rem;
+    }
+}
