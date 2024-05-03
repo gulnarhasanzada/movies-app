@@ -17,7 +17,6 @@ const  MoviesContextProvider = ({children}) =>{
 
     const fetchMovies = async ()=>{
         let fetchUrl = `${url}/discover/movie?api_key=${apiKey}`;
-        console.log(search)
         if(search !==''){
           fetchUrl =  `${url}/search/movie?api_key=${apiKey}&query=${search}`
         }

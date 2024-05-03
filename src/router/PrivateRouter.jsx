@@ -1,18 +1,12 @@
-import React from 'react'
-import {Navigate} from 'react-router-dom'
-import { toast } from 'react-toastify';
+import { useContext } from 'react'
+import { Navigate, Outlet } from 'react-router-dom'
+import { useUserContext } from '../context/UserContext'
 
-const PrivateRouter = ({
-    user,
-    redirectPath = '/',
-    children,
-  }) => {
-    if (!user) {
-      toast.warning("Please login to see details!")
-      return <Navigate to={redirectPath} replace />;
-    }
-  
-    return children ? children : <Outlet />;
+
+const PrivateRouter = () => {
+  const { currentUser } = useUserContext()
+
+  return currentUser ? <Outlet /> : <Navigate to="/login" replace />
 }
 
 export default PrivateRouter

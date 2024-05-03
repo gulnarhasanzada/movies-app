@@ -12,7 +12,6 @@ import { useUserContext } from '../../context/UserContext';
 const Nav = () => {
   const {currentUser, logOut} = useUserContext();
   const theme = useTheme()
-  console.log(currentUser)
   return (
     <Box>
     <AppBar position="static" sx={{display:'flex', flexDirection:'row', justifyContent:'space-between', backgroundColor: theme.palette.primary.main }}>
